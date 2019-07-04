@@ -101,7 +101,7 @@ int			main(int argc, char *argv[])
 	SDL_BlitSurface(sapin, NULL, screen, &position);
 */
 
-
+	SDL_ShowCursor(SDL_DISABLE);
 	continuer = 42;
 	while (continuer)
 	{
@@ -130,6 +130,19 @@ int			main(int argc, char *argv[])
 						position.x--;
 						break;
 				}
+				break;
+			case SDL_MOUSEBUTTONUP:
+				/*if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					position.x = event.button.x;
+					position.y = event.button.y;
+				}*/
+				if (event.button.button == SDL_BUTTON_RIGHT)
+					continuer = 0;
+				break;
+			case SDL_MOUSEMOTION:
+				position.x = event.motion.x;
+				position.y = event.motion.y;
 				break;
 		}
 		SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 255, 255, 255));
